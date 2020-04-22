@@ -18,6 +18,7 @@ public class Gantt extends PApplet
 	float h;
 	
 	int lines = 30;
+
 	
 	public void settings()
 	{
@@ -66,29 +67,42 @@ public class Gantt extends PApplet
 
 	public void displayTasks(){
 
+
 		for(int i = 1; i <= lines; i++)
         {
-            float y = map(i, 1, lines, border, width - border);
-
+			float x = map(i, 1, lines, border, width - border);
+	
 			stroke(255);
-            line(y + lines, border, y + lines, height - border);
+            line(x + lines, border, x + lines, height - border);
 
             fill(255);
-			text(i, y + lines, (border / 2) );
+			text(i, x + lines, (border / 2) );
+
 		}
 
 		for(int i = 0 ; i < tasks.size() ; i ++)
         {
             Task t = tasks.get(i);
 
-            float x = map(i, 0, tasks.size(), border, height - (border*2));
+            float y = map(i, 0, tasks.size(), border, height - border);
 
             fill(255);
-            textAlign(LEFT, CENTER);
-			text(t.getTask(), left - 10, x + (h / 2) );
+			text(t.getTask(), left + 10, y + (h / 2) );
+
+			//maping the start of bar 
+			float start = map(t.getStart(), 1, 30, border, width - border);
+
+			//maping end of bar
+			float end = map(t.getEnd(), 1, 30, border, width - border);
+
+			 
+
+			fill(255,0,0);
+
+			rect(start, y - 20, end-start, 20,7);
 			
-		}
 		
+		}
 
 
 
