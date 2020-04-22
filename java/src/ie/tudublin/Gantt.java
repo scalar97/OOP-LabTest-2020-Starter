@@ -22,7 +22,6 @@ public class Gantt extends PApplet
 	public void settings()
 	{
 		size(800, 600);
-
 		
         border = width * 0.1f;
         left = width * 0.05f;
@@ -77,6 +76,21 @@ public class Gantt extends PApplet
             fill(255);
 			text(i, y + lines, (border / 2) );
 		}
+
+		for(int i = 0 ; i < tasks.size() ; i ++)
+        {
+            Task t = tasks.get(i);
+
+            float x = map(i, 0, tasks.size(), border, height - (border*2));
+
+            fill(255);
+            textAlign(LEFT, CENTER);
+			text(t.getTask(), left - 10, x + (h / 2) );
+			
+		}
+		
+
+
 
 		
 	}
