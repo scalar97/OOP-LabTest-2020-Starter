@@ -6,26 +6,20 @@ import java.util.ArrayList;
 import processing.data.Table;
 import processing.data.TableRow;
 
-
 public class Gantt extends PApplet
 {	
 	ArrayList<Task> tasks = new ArrayList<Task>(); 
+	float border;
 	
-    float border;
-
-    float w;
 	float h;
-	
 	int lines = 30;
 
-	
 	public void settings()
 	{
 		size(800, 600);
 		
         border = width * 0.1f;
 
-        w = width * 0.3f;
         h = height * 0.1f;
 	}
 
@@ -50,14 +44,29 @@ public class Gantt extends PApplet
 	public void mousePressed()
 	{
 		println("Mouse pressed");
-		
 
-		
+	 
+		for (int i =0; i< lines; i++){
+			
+			Task t = tasks.get(i);
+
+			float start = map(t.getStart(), 1, 30, border , width - border);
+			float end = map(t.getEnd(), 1, 30, border, width - border);
+
+			if(mouseX < start && mouseX > start ){
+				t.setStart(i);		
+			}
+			if(mouseX < end && mouseX > end ){	
+				t.setEnd(i);
+			}
+		}
+
 	}
-
+	
 	public void mouseDragged()
 	{
 		println("Mouse dragged");
+
 	}
 
 	public void setup() 
@@ -67,7 +76,6 @@ public class Gantt extends PApplet
 	}
 
 	public void displayTasks(){
-
 
 		for(int i = 1; i <= lines; i++)
         {
@@ -91,19 +99,19 @@ public class Gantt extends PApplet
             fill(255);
 			text(t.getTask(), border, y + (h/2) );
 
-			//maping the start of bar 
+
 			float start = map(t.getStart(), 1, 30, border , width - border);
 
-			//maping end of bar
 			float end = map(t.getEnd(), 1, 30, border, width - border);
 
 			float co = map(i, 0, tasks.size(),i,255);
 
 			fill(255,co,co);
+			
 			rect(start+30, y + 14, end-start, 25,4);			
 		}		
+
 	}
-	
 	public void draw()
 	{			
 		background(0);
