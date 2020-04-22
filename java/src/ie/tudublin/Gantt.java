@@ -12,7 +12,6 @@ public class Gantt extends PApplet
 	ArrayList<Task> tasks = new ArrayList<Task>(); 
 	
     float border;
-    float left;
 
     float w;
 	float h;
@@ -25,7 +24,6 @@ public class Gantt extends PApplet
 		size(800, 600);
 		
         border = width * 0.1f;
-        left = width * 0.05f;
 
         w = width * 0.3f;
         h = height * 0.1f;
@@ -75,7 +73,8 @@ public class Gantt extends PApplet
 			stroke(255);
             line(x + lines, border, x + lines, height - border);
 
-            fill(255);
+			fill(255);
+			textAlign(CENTER);
 			text(i, x + lines, (border / 2) );
 
 		}
@@ -87,21 +86,18 @@ public class Gantt extends PApplet
             float y = map(i, 0, tasks.size(), border, height - border);
 
             fill(255);
-			text(t.getTask(), left + 10, y + (h / 2) );
+			text(t.getTask(), border, y + (h/2) );
 
 			//maping the start of bar 
-			float start = map(t.getStart(), 1, 30, border, width - border);
+			float start = map(t.getStart(), 1, 30, border , width - border);
 
 			//maping end of bar
 			float end = map(t.getEnd(), 1, 30, border, width - border);
 
-			 
-
 			fill(255,0,0);
 
-			rect(start, y - 20, end-start, 20,7);
+			rect(start+30, y + 14, end-start, 25,4);
 			
-		
 		}
 
 
