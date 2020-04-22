@@ -49,7 +49,10 @@ public class Gantt extends PApplet
 	
 	public void mousePressed()
 	{
-		println("Mouse pressed");	
+		println("Mouse pressed");
+		
+
+		
 	}
 
 	public void mouseDragged()
@@ -94,15 +97,11 @@ public class Gantt extends PApplet
 			//maping end of bar
 			float end = map(t.getEnd(), 1, 30, border, width - border);
 
-			fill(255,0,0);
+			float co = map(i, 0, tasks.size(),i,255);
 
-			rect(start+30, y + 14, end-start, 25,4);
-			
-		}
-
-
-
-		
+			fill(255,co,co);
+			rect(start+30, y + 14, end-start, 25,4);			
+		}		
 	}
 	
 	public void draw()
