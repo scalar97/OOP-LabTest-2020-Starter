@@ -1,20 +1,28 @@
 package ie.tudublin;
 
-import java.util.ArrayList;
-
-import processing.core.PApplet;
-import processing.data.Table;
 import processing.data.TableRow;
 
 public class Task{
 
     private String task;
+
     private int start;
+
     private int end;
 
- 
+    
+    public Task(String task, int start, int end)
+    {
+        this.task = task;
+        this.start = start;
+        this.end = end;
+    }
 
-    public String getTask() {
+    public Task(TableRow tr) {
+        this(tr.getString("Task"), tr.getInt("Start"), tr.getInt("End"));
+	}
+
+	public String getTask() {
         return task;
     }
 
@@ -40,9 +48,7 @@ public class Task{
         
     @Override
     public String toString() {
-        return "Task=" + task + ", Start=" + start + ", End=" + end +"";
+        return "\nTask: " + task + " [Start: " + start + ", End: " + end +"]";
     }
 
-
-    
 }
